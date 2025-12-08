@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Salon Control Panel</title>
-    <link href="Dashboard.css" rel="stylesheet">
+    <link href="dashboard.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="dashboard">
+
     <nav class="dashboard__nav">
         <button class="dashboard__nav-btn">Services</button>
         <button class="dashboard__nav-btn">Products</button>
         <button class="dashboard__nav-btn">Professionals</button>
         <button class="dashboard__nav-btn">Appointments</button>
     </nav>
-    <div class="dashboard__main">
+
+    <div class="dashboard__content">
         <main class="main">
             <div class="main__controls">
                 <div class="main__search">
-                    <input class="main__search-input" placeholder="Search..." type="text">
+                    <input class="main__search-input" placeholder="Enter service name, price or duration">
                 </div>
                 <div class="main__category">
-                    Category Selection
+                    <div>All Categories</div>
                     <ul class="main__category-dropdown">
                         <li>Haircut</li>
                         <li>Beard Trim</li>
@@ -29,25 +32,53 @@
                     </ul>
                 </div>
             </div>
-
-            <!-- قسمت خالی وسط صفحه -->
-            <div></div>
-
+            <div></div> <!-- فضای خالی وسط صفحه -->
         </main>
 
-        <aside class="order">
+        <aside class="order-wrapper">
             <h2 class="order__title">Your Order</h2>
-            <ul class="order__list">
-                <li class="order__item"><span>Mens clipper cut</span><strong>$75</strong></li>
-                <li class="order__item"><span>Kids cut</span><strong>$150</strong></li>
-            </ul>
-            <div class="order__total">
-                <span>Total</span>
-                <strong>$225</strong>
+
+            <div class="order-box--advanced">
+                <div class="order-box__top">
+                    <div class="order-box__avatar-name">
+                        <img class="order-box__avatar" src="assets/profile.png">
+                        <div>
+                            <div class="order-box__name">Sepideh</div>
+                            <div class="order-box__subtitle">Haircut with David</div>
+                        </div>
+                    </div>
+                    <div class="order-box__price">$420</div>
+                </div>
+
+                <ul class="order-box__services">
+                    <li><span>Kids Cut</span><span>$45</span></li>
+                    <li><span>Mens Clipper</span><span>$75</span></li>
+                    <li><span>Beard Trim</span><span>$25</span></li>
+                </ul>
+
+                <div class="order-box__actions">
+                    <button class="discount-btn">10%</button>
+                    <button class="discount-btn">20%</button>
+                    <button class="discount-btn">40%</button>
+                    <button class="order__btn">Submit</button>
+                </div>
             </div>
-            <button class="order__btn">Charge</button>
+
+            <div class="order-grid">
+                <div class="order-box"><span>Product</span><strong>$50</strong></div>
+                <div class="order-box"><span>Coloring</span><strong>$120</strong></div>
+                <div class="order-box"><span>Style</span><strong>$80</strong></div>
+                <div class="order-box"><span>Wax</span><strong>$40</strong></div>
+                <div class="order-box order-box--total">
+                    <span>Total</span>
+                    <strong>$420</strong>
+                </div>
+            </div>
+
         </aside>
     </div>
+
 </div>
+
 </body>
 </html>
