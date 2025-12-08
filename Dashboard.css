@@ -8,6 +8,8 @@ body {
     font-family: Arial, sans-serif;
     background-color: #3f3f3f;
     color: #fff;
+    overflow: hidden;
+    direction: ltr;
 }
 
 .dashboard {
@@ -102,6 +104,44 @@ body {
     background-color: #ef853e;
     color: #fff;
     border-radius: 8px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 ستون مساوی */
+    grid-template-rows: repeat(5, 120px); /* 5 ردیف با ارتفاع 100px */
+    gap: 10px;
+}
+
+.grid-item {
+    background-color: #3f3f3f;
+    color: white;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 5px;
+    padding: 10px;
+    font-size: 15px;
+    border: #727070 2px solid;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.grid-item:hover {
+    background-color: #ef853e;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.grid-item .title {
+    justify-self: start; /* چپ بالا */
+    font-weight: bold;
+}
+
+.grid-item .down {
+    display: flex;
+    justify-content: space-between;
+    align-items: end; /* پایین خانه */
+    font-size: 14px;
 }
 
 .order-wrapper {
