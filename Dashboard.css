@@ -2,29 +2,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /*outline: 1px solid red;*/
 }
 
 body {
     font-family: Arial, sans-serif;
     background-color: #3f3f3f;
     color: #fff;
-    overflow: hidden;
+    /*overflow: hidden;*/
     direction: ltr;
 }
 
-.dashboard {
-    display: grid;
-    grid-template-rows: auto 1fr; /* ردیف اول nav، ردیف دوم content */
-    position: relative; /* برای order */
-}
-
-.dashboard__nav {
+/* منو بالای صفحه */
+.navbar {
     display: flex;
     gap: 40px;
     padding: 20px;
 }
 
-.dashboard__nav-btn {
+/* دکمه های داخل منو بالای صفحه */
+.navbar-btn {
     background: none;
     border: none;
     color: #ccc;
@@ -33,33 +30,35 @@ body {
     transition: 0.3s;
 }
 
-.dashboard__nav-btn:hover {
+/*  دکمه های داخل منو بالای صفحه وقتی هاور میشن */
+.navbar-btn:hover {
     color: #fff;
     transform: scale(1.1);
 }
 
-.dashboard__content {
+/* بخش اصلی محتوای صفحه*/
+.layout {
     display: grid;
     grid-template-columns: 3fr 1fr; /* ستون اصلی 3 واحد، order 1 واحد */
     gap: 20px;
     align-items: start; /* از بالا شروع شود */
 }
 
-.main {
-    flex: 3;
+/* موارد زیر منو مثل سرچ و کتگوری */
+.services {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px;
 }
 
-.main__controls {
+.services__controls {
     display: grid;
     grid-template-columns: 3fr 1fr;
     gap: 10px;
 }
 
-.main__search-input {
+.search-input {
     height: 50px;
     width: 100%;
     border-radius: 8px;
@@ -67,16 +66,16 @@ body {
     border: none;
 }
 
-.main__category {
+.category {
     background: #fff;
     color: #777;
     border-radius: 8px;
-    padding: 10px;
+    padding: 14px;
     cursor: pointer;
     position: relative;
 }
 
-.main__category-dropdown {
+.category-dropdown {
     display: none;
     list-style: none;
     width: 100%;
@@ -87,32 +86,40 @@ body {
     z-index: 10;
 }
 
-.main__category:hover .main__category-dropdown {
+.category:hover {
     display: block;
-    background-color: white;
-    border-radius: 8px;
-    margin-top: 2px;
+    background-color: #ffffff;
+    border-radius: 8px 8px 0px 0px;
 }
 
-.main__category-dropdown li {
+.category:hover .category-dropdown {
+    display: block;
+    background-color: #d0cfcf;
+    border-radius: 0px 0px 8px 8px;
+
+}
+
+.category-dropdown li {
     padding: 8px 12px;
     cursor: pointer;
     transition: 0.2s;
 }
 
-.main__category-dropdown li:hover {
+.category-dropdown li:hover {
     background-color: #ef853e;
     color: #fff;
     border-radius: 8px;
 }
 
+/* فضای موجود در پایین سرچ و کتگوری که شامل خانه هایی در ۴ ستون و ۵ دریف است */
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 ستون مساوی */
-    grid-template-rows: repeat(5, 120px); /* 5 ردیف با ارتفاع 100px */
+    grid-template-columns: repeat(4, 250px); /* چهار ستون با عرض مشخص */
+    grid-auto-rows: 120px; /* ارتفاع خانه */
     gap: 10px;
 }
 
+/* شکل و استایل خانه ها */
 .grid-item {
     background-color: #3f3f3f;
     color: white;
@@ -124,38 +131,44 @@ body {
     border: #727070 2px solid;
     border-radius: 8px;
     transition: all 0.3s ease;
+    width: 100%;
 }
 
+/* شکل و استایل خانه ها وقتی هاور میشن */
 .grid-item:hover {
     background-color: #ef853e;
     color: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* عنوان هر خانه که بالا سمت چپ نوشته شده */
 .grid-item .title {
     justify-self: start; /* چپ بالا */
     font-weight: bold;
 }
 
-.grid-item .down {
+/* قیمت و زمان هر خانه که پایین سمت چپ  و راست نوشته شده */
+.grid-item .bottom {
     display: flex;
     justify-content: space-between;
     align-items: end; /* پایین خانه */
     font-size: 14px;
 }
 
-.order-wrapper {
-    position: absolute; /* هم‌سطح nav */
+/* سمت راست صفحه از بالا تا پایین با عنوان youre order */
+.order {
+    position: absolute; /* هم سطح با nav */
     top: 0;
     right: 0;
-    width: 300px;
+    width: 350px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 20px;
 }
 
-.order-box--advanced {
+/* باکس اول زیر عنوان youre order */
+.order-main {
     background: #5e5e5e;
     border-radius: 10px;
     padding: 12px;
@@ -164,48 +177,22 @@ body {
     gap: 10px;
 }
 
-.order-box__top {
+
+.order-header {
     display: flex;
     justify-content: space-between;
 }
 
-.order-box__avatar-name {
-    display: flex;
-    gap: 8px;
-
+/* چیدمان دکمه های تخفیف و سابمیت در باکس اول */
+.order-actions {
+    background: #5e5e5e;
+    border-radius: 8px;
+    padding: 8px 8px 0 8px;
+    display: grid;
+    grid-template-columns: repeat(4, 50px) 70px;
 }
 
-.order-box__avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 6px;
-}
-
-.order-box__name {
-    font-size: 0.9rem;
-    font-weight: bold;
-}
-
-.order-box__subtitle {
-    font-size: 0.75rem;
-    color: #ccc;
-}
-
-.order-box__price {
-    font-weight: bold;
-}
-
-.order-box__services {
-    list-style: none;
-    font-size: 0.85rem;
-}
-
-.order-box__services li {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 4px;
-}
-
+/* دکمه های تخفیف */
 .discount-btn {
     font-size: 0.75rem;
     padding: 6px 13px;
@@ -214,7 +201,7 @@ body {
     border-radius: 6px;
     border: none;
     cursor: pointer;
-
+    margin: 2px;
 }
 
 .discount-btn:hover {
@@ -222,28 +209,72 @@ body {
     color: #fff;
 }
 
-.order__btn {
+/* دکمه سابمیت باکس اول*/
+.submit-btn {
     background: #ffffff;
     color: #5e5e5e;
     border-radius: 6px;
     border: none;
     font-size: 0.75rem;
-    padding: 6px 17px;
+    padding: 6px 13px;
     cursor: pointer;
+    margin: 2px;
 }
 
-.order__btn:hover {
+.submit-btn:hover {
     background-color: #ef853e;
     color: #fff;
 }
 
-.order-grid {
+/* عکس کاربر */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+}
+
+/* اطلاعات کاربر */
+.user {
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    gap: 8px;
+
+}
+
+/* متن زیر اطلاعات کاربر */
+.order-box__subtitle {
+    font-size: 0.75rem;
+    color: #ccc;
+}
+
+/*  بولد شدن قیمت */
+.order-box__price {
+    font-weight: bold;
+}
+
+/* اطلاعات داخل باکس اول */
+.order-items {
+    list-style: none; /* باکس اول */
+    font-size: 0.85rem;
+}
+
+
+.order-items li {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* لیست باکس های بین باکس اول و total */
+.order-list {
     display: grid;
-    /*grid-template-rows: repeat(4, 42px) 65px;*/
+    /*grid-template-rows: repeat( 4 , 80px) 160px;*/
+    grid-template-rows: repeat(4, auto) 130px;
     gap: 10px;
 }
 
-.order-box {
+/* اطلاعات داخل باکس های بین باکس اول و total */
+.order-item {
     background: #5e5e5e;
     border-radius: 8px;
     padding: 6px 10px;
@@ -252,7 +283,105 @@ body {
     align-items: center;
 }
 
-.order-box--total {
-    background: #4a4a4a;
-    padding: 10px;
+/* انیمیشن برای باکس آخر */
+/*.order-item.order-total {*/
+/*    background: #5e5e5e;*/
+/*    border-radius: 8px;*/
+/*    padding: 12px;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 12px;*/
+/*    width: 100%;*/
+/*    box-sizing: border-box;*/
+/*    min-height: 220px;*/
+/*    position: relative;*/
+
+/*    !* حالت مخفی اولیه: پایین باکس *!*/
+/*    transform: translateY(300px);*/
+/*    opacity: 0.8;*/
+/*    transition: transform 1s ease, opacity 0.3s ease;*/
+/*}*/
+
+/*!* وقتی موس روی باکس total یا والد آن رفت *!*/
+/*.order:hover .order-item.order-total,*/
+/*.order-item.order-total:hover {*/
+/*    transform: translateY(0); !* بالا می‌آید *!*/
+/*    opacity: 1;               !* کامل دیده شود *!*/
+/*}*/
+
+
+/* باکس آخر */
+.order-item.order-total {
+    background: #5e5e5e;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 220px; /* ارتفاع حداقل برابر با باکس اول */
+}
+
+/* هدر باکس آخر */
+.order-item.order-total .total-header {
+    display: flex; /* افقی بچین */
+    justify-content: space-between; /* فاصله حداکثر بین دو طرف */
+    align-items: center; /* هر دو متن وسط ارتفاع هدر */
+    font-weight: bold;
+    font-size: 0.9rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.order-item.order-total .total-images {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 100%;
+}
+
+.order-item.order-total .image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    margin-bottom: 5px;
+}
+
+/* هاور شدن تصاویر داخل باکس آخر */
+.order-total .image-box:hover {
+    background-color: #ef853e;
+    border-radius: 6px;
+}
+
+.order-item.order-total .image-box span {
+    display: block;
+    color: #fff;
+    font-size: 0.75rem;
+    text-align: center;
+}
+
+.order-item.order-total .charge-box {
+    background-color: #3f3f3f;
+    color: #fff;
+    text-align: center;
+    padding: 12px 0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px; /* فاصله با تصاویر */
+    width: 100%; /* عرض کل باکس total */
+    box-sizing: border-box;
+}
+
+.order-item.order-total .charge-box:hover {
+    background-color: #ef853e;
+}
+
+.order-list .order-item:hover {
+    background-color: #ef853e; /* رنگ هاور */
+    color: #fff; /* رنگ متن هاور */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* افکت سایه */
+    transition: all 0.3s ease; /* انتقال نرم */
 }
