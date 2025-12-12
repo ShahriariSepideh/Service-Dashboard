@@ -15,9 +15,15 @@ body {
 /* بخش اصلی محتوای صفحه*/
 .layout {
     display: grid;
-    grid-template-columns:1fr; /* ستون اصلی 3 واحد، order 1 واحد */
+    grid-template-columns:1fr;
     gap: 20px;
-    padding: 20px 20px;
+    margin: 20px;
+}
+
+.left{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 /* موارد زیر منو مثل سرچ و کتگوری */
@@ -27,18 +33,10 @@ body {
     gap: 20px;
 }
 
-.services__controls {
-    display: grid;
-    grid-template-columns:3fr 1fr;
-    gap: 20px;
-}
-
 /* منو بالای صفحه */
 .navbar {
     display: flex;
-    /*flex-direction: column;*/
     align-items: center;
-    /*padding: 20px 20px;*/
     gap: 20px;
     height: auto;
     overflow-x: scroll;
@@ -95,38 +93,11 @@ body {
     z-index: 10;
 }
 
-.category:hover {
-    display: block;
-    background-color: #ffffff;
-    border-radius: 8px 8px 0px 0px;
-}
-
-.category:hover .category-dropdown {
-    display: block;
-    background-color: #d0cfcf;
-    border-radius: 0px 0px 8px 8px;
-
-}
-
 .category-dropdown li {
     padding: 8px 12px;
     cursor: pointer;
     transition: 0.2s;
     font-size: 0.8rem;
-}
-
-.category-dropdown li:hover {
-    background-color: #ef853e;
-    color: #fff;
-    border-radius: 8px;
-}
-
-/* فضای موجود در پایین سرچ و کتگوری */
-.products-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-auto-rows: 120px; /* ارتفاع خانه */
-    gap: 20px;
 }
 
 /* شکل و استایل خانه ها */
@@ -180,9 +151,8 @@ body {
     background: #5e5e5e;
     border-radius: 8px;
     padding: 8px 8px 0 8px;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /* دکمه های تخفیف */
@@ -197,6 +167,11 @@ body {
     margin: 2px;
 }
 
+.discount-btn:active{
+    background-color: #ef853e;
+    color: #fff;
+}
+
 /* دکمه سابمیت باکس اول*/
 .submit-btn {
     background: #ffffff;
@@ -207,6 +182,11 @@ body {
     padding: 6px 13px;
     cursor: pointer;
     margin: 2px;
+}
+
+.submit-btn:active{
+    background-color: #23799d;
+    color: #fff;
 }
 
 /* عکس کاربر */
@@ -263,6 +243,11 @@ body {
     align-items: center;
 }
 
+.order-list .order-item:active{
+    background-color: #ef853e;
+    color: #fff;
+}
+
 /* باکس آخر */
 .order-item.order-total {
     background: #5e5e5e;
@@ -306,6 +291,12 @@ body {
     text-align: center;
 }
 
+.image-box span:active{
+    background-color: #ef853e;
+    color: #fff;
+    border-radius: 8px;
+}
+
 .charge-box button {
     background-color: #3f3f3f;
     color: #fff;
@@ -314,9 +305,18 @@ body {
     padding: 20px;
     border-radius: 6px;
     cursor: pointer;
-    width: 22rem;
+    width: 100%;
     height: auto;
     border: none;
+}
+
+.charge-box{
+    width: 100%;
+}
+
+.charge-box button:active {
+    background-color: #ef853e;
+    color: #fff;
 }
 
 /* تبلت */
@@ -338,12 +338,10 @@ body {
         gap: 20px;
     }
 
-    .services, .services__controls {
+    .left{
+        display: grid;
         grid-template-columns: 1fr;
-    }
-
-    .products-container {
-        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     .order-actions {
@@ -357,17 +355,9 @@ body {
 
 /* دسکتاپ */
 @media (min-width: 900px) {
-
-    .navbar {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 20px;
-    }
-
     .navbar-btn {
         width: auto;
-        padding: 10px 10px;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
     }
 
     /*  دکمه های داخل منو بالای صفحه وقتی هاور میشن */
@@ -378,27 +368,36 @@ body {
 
     .layout {
         grid-template-columns: 3fr 1fr; /* محتوا بزرگ‌تر و سفارش کنار */
-        height: 100vh;
     }
 
     .services {
         display: grid;
         grid-template-rows: auto 1fr; /* navbar و controls + products */
-        height: 100%;
-
     }
 
-    .services__controls {
-        grid-template-columns: 3fr 1fr;
-    }
-
-    .products-container {
+    .left {
+        display: grid;
         grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+
+        gap: 20px;
+        align-items: center;
     }
 
-    .products-container :hover {
+    .search-input {
+        grid-column: span 3;
+    }
+
+    .product {
+        width: 100%;
+        height: 100%;
+    }
+
+    .product:hover{
         background-color: #ef853e;
         color: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* افکت سایه */
+        transition: all 0.3s ease;
     }
 
     .order-actions {
@@ -407,10 +406,6 @@ body {
 
     .order-item.order-total .total-images {
         grid-template-columns: repeat(3, 1fr);
-    }
-
-    .order {
-        padding: 20px 0;
     }
 
     .discount-btn:hover {
@@ -428,7 +423,7 @@ body {
     .order-list .order-item:hover {
         background-color: #ef853e;
         color: #fff;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* افکت سایه */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
     }
 
@@ -436,13 +431,31 @@ body {
         background-color: #ef853e;
         border-radius: 8px;
         color: #fff;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* افکت سایه */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease;
+        cursor: pointer;
     }
 
     .charge-box button:hover {
         background-color: #d78416;
         color: #fff;
         transition: all 0.3s ease;
+    }
+
+    .category:hover {
+        background-color: #ffffff;
+        border-radius: 8px 8px 0 0;
+    }
+
+    .category:hover .category-dropdown {
+        display: block;
+        background-color: #d0cfcf;
+        border-radius: 0 0 8px 8px;
+    }
+
+    .category-dropdown li:hover {
+        background-color: #ef853e;
+        color: #fff;
+        border-radius: 8px;
     }
 }
