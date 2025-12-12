@@ -10,7 +10,6 @@ body {
     background-color: #3f3f3f;
     color: #fff;
     direction: ltr;
-
 }
 
 /* بخش اصلی محتوای صفحه*/
@@ -339,12 +338,8 @@ body {
         gap: 20px;
     }
 
-    .services {
+    .services, .services__controls {
         grid-template-columns: 1fr;
-    }
-
-    .services__controls {
-        grid-template-columns:  1fr;
     }
 
     .products-container {
@@ -383,6 +378,14 @@ body {
 
     .layout {
         grid-template-columns: 3fr 1fr; /* محتوا بزرگ‌تر و سفارش کنار */
+        height: 100vh;
+    }
+
+    .services {
+        display: grid;
+        grid-template-rows: auto 1fr; /* navbar و controls + products */
+        height: 100%;
+
     }
 
     .services__controls {
